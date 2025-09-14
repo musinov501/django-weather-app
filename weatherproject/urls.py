@@ -21,3 +21,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('weatherapp.urls') ),
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+
+

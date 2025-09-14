@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 import requests
 import datetime
+from .env import API_KEY, APPID, SEARCH_ENGINE_ID
 
 
 def home(request):
@@ -9,20 +10,22 @@ def home(request):
     if 'city' in request.POST:
          city = request.POST['city']
     else:
-         city = 'indore'     
+         city = 'fergana'     
     
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid='
+   
+    
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={settings.APPID}'
     PARAMS = {'units':'metric'}
 
-    API_KEY =  ''
+    
 
-    SEARCH_ENGINE_ID = ''
+    
      
     query = city + " 1920x1080"
     page = 1
     start = (page - 1) * 10 + 1
     searchType = 'image'
-    city_url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={SEARCH_ENGINE_ID}&q={query}&start={start}&searchType={searchType}&imgSize=xlarge"
+    city_url = f"https://www.googleapis.com/customsearch/v1?key={settings.API_KEY}&cx={settings.SEARCH_ENGINE_ID}&q={query}&start={start}&searchType={searchType}&imgSize=xxlarge"
 
     data = requests.get(city_url).json()
     count = 1
@@ -43,7 +46,7 @@ def home(request):
     except KeyError:
           exception_occurred = True
           messages.error(request,'Entered data is not available to API')   
-          # city = 'indore'
+          # city = 'fergana'
           # data = requests.get(url,params=PARAMS).json()
           
           # description = data['weather'][0]['description']
@@ -51,7 +54,7 @@ def home(request):
           # temp = data['main']['temp']
           day = datetime.date.today()
 
-          return render(request,'weatherapp/index.html' ,{'description':'clear sky', 'icon':'01d'  ,'temp':25 , 'day':day , 'city':'indore' , 'exception_occurred':exception_occurred } )
+          return render(request,'weatherapp/index.html' ,{'description':'clear sky', 'icon':'01d'  ,'temp':25 , 'day':day , 'city':'fergana' , 'exception_occurred':exception_occurred } )
                
     
     
