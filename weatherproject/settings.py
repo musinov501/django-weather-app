@@ -31,7 +31,7 @@ SECRET_KEY = 'y!^f73w5xi5zi17+q&hu+krknlm*j&018xfy8xx5(a)axn0%b%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-weather-app-5-ekea.onrender.com']
 
 
 # Application definition
