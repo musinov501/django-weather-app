@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib import messages
 import requests
 import datetime
-from .env import API_KEY, APPID, SEARCH_ENGINE_ID
+from weatherproject import settings
+# from .env import API_KEY, APPID, SEARCH_ENGINE_ID
 
 
 def home(request):
@@ -10,7 +11,7 @@ def home(request):
     if 'city' in request.POST:
          city = request.POST['city']
     else:
-         city = 'fergana'     
+         city = 'fergana'    
     
    
     
@@ -18,9 +19,6 @@ def home(request):
     PARAMS = {'units':'metric'}
 
     
-
-    
-     
     query = city + " 1920x1080"
     page = 1
     start = (page - 1) * 10 + 1
@@ -50,7 +48,7 @@ def home(request):
           # data = requests.get(url,params=PARAMS).json()
           
           # description = data['weather'][0]['description']
-          # icon = data['weather'][0]['icon']
+          # icon = data['weather'][0]['icon']  
           # temp = data['main']['temp']
           day = datetime.date.today()
 
